@@ -73,7 +73,7 @@ def to_xml(imagefile, root_dir, tempplate = 'template.xml', save_xml='./Annotati
             with open(save_txt, 'a+') as f:
                      f.write(xml_prefix)
                      f.write('\n')
-            cv2.imwrite('JPEGImages/'+new_name, im)
+            cv2.imwrite('JEPGImages/'+new_name, im)
 if __name__ == '__main__':
     train_file = './train/trainImageList.txt'
     test_file = './train/testImageList.txt'
