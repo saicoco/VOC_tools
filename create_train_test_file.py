@@ -4,18 +4,14 @@ import os, sys
 import glob
 
 trainval_dir = sys.argv[1]
-test_dir = sys.argv[2]
-dst_dir = sys.argv[3]
+dst_dir = sys.argv[2]
 trainval_img_lists = glob.glob1(trainval_dir, '*.jpg')
 
-if os.path.exists(dst_dir):
+if not os.path.exists(dst_dir):
     os.mkdir(dst_dir)
 
-dist_img_dir = os.path.join(dst_dir, "JPEGImages")
-dist_anno_dir = os.path.join(dst_dir, "Annotations")
-
 trainval_fd = open(os.path.join(dst_dir, "trainval.txt"), 'w')
-test_fd = open(dst_dir,"test.txt", 'w')
+test_fd = open(os.path.join(dst_dir,"test.txt"), 'w')
 
 import random
 trainval_img_names = map(lambda x: x.split('.')[0] + '\n', trainval_img_lists)
