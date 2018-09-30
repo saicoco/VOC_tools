@@ -149,9 +149,8 @@ def dict_to_tf_example(data,
     ymins.append(ymin / height)
     xmaxs.append(xmax / width)
     ymaxs.append(ymax / height)
-    class_name = get_class_name_from_filename(data['filename'])
-    classes_text.append(class_name.encode('utf8'))
-    classes.append(label_map_dict[class_name])
+    classes_text.append(obj['name'].encode('utf8'))
+    classes.append(label_map_dict[obj['name']])
     truncated.append(int(obj['truncated']))
     poses.append(obj['pose'].encode('utf8'))
     if not faces_only:
@@ -253,9 +252,9 @@ def main(_):
   label_map_dict = label_map_util.get_label_map_dict(FLAGS.label_map_path)
 
   logging.info('Reading from Pet dataset.')
-  image_dir = os.path.join(data_dir, 'images')
-  annotations_dir = os.path.join(data_dir, 'annotations')
-  examples_path = os.path.join(annotations_dir, 'trainval.txt')
+  image_dir = os.path.join(data_dir, 'JPEGImages')
+  annotations_dir = os.path.join(data_dir, 'Annotations')
+  examples_path = os.path.join(data_dir, 'ImageSets/Main/', 'trainval.txt')
   examples_list = dataset_util.read_examples_list(examples_path)
 
   # Test images are not included in the downloaded data set, so we shall perform
@@ -269,13 +268,13 @@ def main(_):
   logging.info('%d training and %d validation examples.',
                len(train_examples), len(val_examples))
 
-  train_output_path = os.path.join(FLAGS.output_dir, 'pet_train.record')
-  val_output_path = os.path.join(FLAGS.output_dir, 'pet_val.record')
+  train_output_path = os.path.join(FLAGS.output_dir, 'voc2012_train.record')
+  val_output_path = os.path.join(FLAGS.output_dir, 'voc2012_val.record')
   if FLAGS.faces_only:
     train_output_path = os.path.join(FLAGS.output_dir,
-                                     'pet_train_with_masks.record')
+                                    'voc2012_train_with_masks.record')
     val_output_path = os.path.join(FLAGS.output_dir,
-                                   'pet_val_with_masks.record')
+                                   'voc2012_val_with_masks.record')
   create_tf_record(
       train_output_path,
       label_map_dict,
