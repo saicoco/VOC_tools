@@ -28,7 +28,7 @@ if not os.path.exists(out_dir):
 label_lists = glob.glob1(data_dir, '*.txt')
 prefixs = map(lambda x: ".".join(x.split('.')[:-1]), label_lists)
 
-for pref in prefixs[:100]:
+for pref in prefixs:
     # copy img
     img_filename = os.path.join(data_dir, pref + '.jpg')
     out_cls_filename = os.path.join(out_dir, 'cls', pref + '.png')
