@@ -14,7 +14,7 @@ trainval_fd = open(os.path.join(dst_dir, "trainval.txt"), 'w')
 test_fd = open(os.path.join(dst_dir,"test.txt"), 'w')
 
 import random
-trainval_img_names = map(lambda x: x.split('.')[0] + '\n', trainval_img_lists)
+trainval_img_names = map(lambda x: ".".join(x.split('.')[:-1]) + '\n', trainval_img_lists)
 random.shuffle(trainval_img_names)
 
 length = len(trainval_img_names)
