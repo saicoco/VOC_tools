@@ -57,7 +57,12 @@ for pref in prefixs:
         lines.append(line)
     all_boxes = []
     for i, line in enumerate(lines):
-        line_split = line.strip('\r\n').split(',')[:8]
+        # support rectangle box
+        if len(line.split(',')) > 5:
+            line_split = line.strip('\r\n').split(',')[:8]
+        else:
+            line_split = line.strip('\r\n').split(',')[:4]
+            line_split = [line_split[0], line_split[1], line_split[2], line_split[1], line_split[2], line_split[3], line_split[0], line_split[3]]
 
         box = map(eval, line_split)
         box = np.array(box).reshape((-1, 2)).astype(np.float32)

@@ -16,4 +16,4 @@ mv $tmp_dir/trainval.txt VOC2012/ImageSets/Main
 mv $tmp_dir/cls VOC2012/Annotations/trimaps
 rm -rf $tmp_dir
 
-python create_train_test_file.py VOC2012/JPEGImages/ VOC2012/ImageSets/Main/
+python create_train_test_file.py  VOC2012/ImageSets/Main/VOC2012/JPEGImages/

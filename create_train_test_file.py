@@ -6,6 +6,7 @@ import glob
 trainval_dir = sys.argv[1]
 dst_dir = sys.argv[2]
 trainval_img_lists = glob.glob1(trainval_dir, '*.jpg')
+test_img_lists = glob.glob1(trainval_dir, '*.jpg')
 
 if not os.path.exists(dst_dir):
     os.mkdir(dst_dir)
